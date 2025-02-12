@@ -37,15 +37,33 @@ def get_agent():
 
 agent = get_agent()
 
-# Create the input field
-user_question = st.text_input("Enter Your Question:", key="user_input")
+# Initialize a list to store user questions
+if 'search_history' not in st.session_state:
+    st.session_state.search_history = []
 
-if user_question:
-    with st.spinner("Thinking..."):
-        st.markdown("### Answer:")
-        # Get the agent's response
-        response = agent.run(user_question)
-        st.markdown(response.content)
+# Create a 2-column layout with a 2:1 ratio
+col1, col2 = st.columns([2, 1])  # First column takes 2 parts, second column takes 1 part
+
+# Place the input field and agent's response in the first column
+with col1:
+    user_question = st.text_input("Enter Your Question:", key="user_input")
+
+    if user_question:
+        # Add the question to the search history
+        st.session_state.search_history.append(user_question)
+        
+        with st.spinner("Thinking..."):
+            st.markdown("### Answer:")
+            # Get the agent's response
+            response = agent.run(user_question)
+            st.markdown(response.content)
+
+# Initialize the search history column in the second column
+with col2:
+    if 'search_history' in st.session_state and st.session_state.search_history:
+        st.markdown("### Search History:", unsafe_allow_html=True)
+        for question in st.session_state.search_history:
+            st.markdown(f"<div style='margin-left: 20px; margin-bottom: 5px;'>- {question}</div>", unsafe_allow_html=True)
 
 
 
