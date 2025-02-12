@@ -9,7 +9,8 @@ The bot utilizes the Agno library to interface with a powerful AI model, making 
 1. **User Input**: Users can enter their questions into a text input field.
 2. **Processing**: Upon submission, the bot processes the input and generates a response using the underlying AI model.
 3. **Response Display**: The generated response is displayed on the web interface, allowing users to see the answer immediately.
-4. **Environment Configuration**: The application uses environment variables to securely manage API keys, ensuring that sensitive information is not hard-coded into the application.
+4. **Chat History**: The chatbot maintains a history of the conversation, allowing users to review previous questions and answers.
+5. **Environment Configuration**: The application uses environment variables to securely manage API keys, ensuring that sensitive information is not hard-coded into the application.
 
 ## How to Clone This Project
 1. **Open your terminal**: Access your command line interface.
